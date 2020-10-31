@@ -14,66 +14,47 @@ public class PlayerController : MonoBehaviour
 
 
     private void Start() {
-        InitValuesAndComponenets();
+        InitParameters();
     }
 
 
-    //Function to Init Values and components
-    private void InitValuesAndComponenets() {
+    public void InitParameters() {
         PlayerRb = GetComponent<Rigidbody>();
         PlayerAnim = GetComponent<Animator>();
     }
 
 
-    void Update()
-    {
-        
-        if(Input.GetKey(KeyCode.A))
-        {
+
+    void Update() {
+
+        if (Input.GetKey(KeyCode.A)) {
             PlayerRb.velocity = new Vector3(-PlayerSpeed, 0f, 0f);
-            PlayerAnim.SetTrigger(Constants.MoveAnimTrig);
-            PlayerAnim.ResetTrigger(Constants.IdleAnimTrig);
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x,90, transform.eulerAngles.z);
+            PlayerAnim.SetTrigger("Run");
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 90, transform.eulerAngles.z);
         }
-        else if(Input.GetKey(KeyCode.D))
-        {
+        else if (Input.GetKey(KeyCode.D)) {
             PlayerRb.velocity = new Vector3(PlayerSpeed, 0f, 0f);
-            PlayerAnim.SetTrigger(Constants.MoveAnimTrig);
-            PlayerAnim.ResetTrigger(Constants.IdleAnimTrig);
+            PlayerAnim.SetTrigger("Run");
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, -90, transform.eulerAngles.z);
-        }      
-        else
-        {
+        }
+        else if (Input.GetKeyDown(KeyCode.Space)) {
+           // PlayerAnim.SetTrigger("Attack");
+        }
+        else {
             PlayerRb.velocity = Vector3.zero;
-            PlayerAnim.SetTrigger(Constants.IdleAnimTrig);
-            PlayerAnim.ResetTrigger(Constants.MoveAnimTrig);
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y, transform.eulerAngles.z);
+            PlayerAnim.SetTrigger("Idle");
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            PlayerAnim.SetTrigger(Constants.AttackAnimTrig);
-            PlayerAnim.ResetTrigger(Constants.IdleAnimTrig);
-            PlayerAnim.ResetTrigger(Constants.MoveAnimTrig);
-        }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayerAnim.SetTrigger(Constants.JumpAnimTrig);
-            PlayerAnim.ResetTrigger(Constants.IdleAnimTrig);
-            PlayerAnim.ResetTrigger(Constants.MoveAnimTrig);
-        }
+
+
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Reset"))
-        {
-          
-        }
+    private void OnCollisionEnter(Collision collision) {
+       
     }
 
-    public void ResetPlayerPosition(Transform PlayerStartPos)
-    {
+    public void ResetPlayerPosition(Transform PlayerStartPos) {
         transform.position = PlayerStartPos.position;
     }
 

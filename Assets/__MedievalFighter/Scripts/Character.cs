@@ -4,32 +4,42 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    
+
+
+
+
 
     private void OnTriggerEnter(Collider other) {
-        if (other.GetComponent<PickableObject>()!=null) {
-            PickableObject temp = other.GetComponent<PickableObject>();
-            PickType type = temp.ReturnMyType();
-            switch (type) {
-                case PickType.Coin:
-                    Debug.Log("Avige Coin");
-                    Destroy(other.gameObject);
-                    break;
-                case PickType.Gem:
-                    Debug.Log("Avige Gem");
-                    Destroy(other.gameObject);
-                    break;
-                case PickType.Health:
-                    break;
-                case PickType.Mana:
-                    break;
-                case PickType.Weapon:
-                    break;
-                case PickType.Item:
-                    break;
-                default:
-                    break;
+
+
+        if (other.gameObject.CompareTag("PickableObject")) {
+            if (other.GetComponent<PickableObject>() != null) {
+                PickableObject jeka = other.GetComponent<PickableObject>();
+                PickableType tempType = jeka.ReturnType();
+                switch (tempType) {
+                    case PickableType.Coin:
+                        Debug.Log("sasdadasdad");
+                        Destroy(other.gameObject);
+                        break;
+                    case PickableType.Gem:
+                        Debug.Log("Avige Gem");
+                        Destroy(other.gameObject);
+                        break;
+                    case PickableType.Health:
+                        break;
+                    case PickableType.Weappon:
+                        break;
+                    case PickableType.Secret:
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+       
+
+
+       
     }
+
 }

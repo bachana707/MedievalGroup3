@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickableObject : MonoBehaviour
+public  class PickableObject :MonoBehaviour
 {
-
-
-    public PickType currentType;
+    public PickableType currentType;
     public int value;
-
-
-    public  PickType ReturnMyType() {
+    public PickableType ReturnType() {
         return currentType;
     }
 
-  
 }
-public enum PickType
+
+public enum PickableType
 {
-    Coin, Gem, Health, Mana, Weapon, Item
+    Coin, Gem, Health, Weappon, Secret
 }

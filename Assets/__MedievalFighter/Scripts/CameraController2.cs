@@ -6,7 +6,6 @@ using UnityEngine;
 public class CameraController2 : MonoBehaviour
 {
     public Transform target;
-
     private GameObject mainCam;
 
     public float lerpSpeed;
@@ -15,18 +14,20 @@ public class CameraController2 : MonoBehaviour
     private Vector3 offSet;
     private Vector3 firstPos;
     private Vector3 newPos;
-
     private float startCamY;
     private bool resetYPos = false;
     private Vector3 startOffset;
+
     private void Start() {
-        offSet = target.position - transform.position;
+        offSet = target.position - transform.position;   
         firstPos = target.position - offSet;
         newPos = transform.position;
         mainCam = transform.GetChild(0).gameObject;
         startOffset = offSet;
 
     }
+   
+  
     private void LateUpdate()
     {
         if (canFollow)
@@ -46,7 +47,7 @@ public class CameraController2 : MonoBehaviour
     private void FollowTargetX()
     {
         if (followX)
-        {
+        {                          
             newPos.x = Mathf.Lerp(transform.position.x, target.position.x - offSet.x, lerpSpeed);
         }
         else
