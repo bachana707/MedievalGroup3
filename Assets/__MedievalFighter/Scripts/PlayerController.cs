@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Rigidbody PlayerRb;
 
-    public float PlayerSpeed = 5f;
+    public float PlayerSpeed = 10f;
 
     [HideInInspector]
     public Animator PlayerAnim;
