@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
 
     void Update() {
-
+        Debug.Log("Bachanam mogaswro");
         if (Input.GetKey(KeyCode.A)) {
             PlayerRb.velocity = new Vector3(-PlayerSpeed, 0f, 0f);
             PlayerAnim.SetTrigger("Run");
