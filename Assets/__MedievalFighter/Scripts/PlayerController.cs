@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody PlayerRb;
 
     public float PlayerSpeed = 10f;
+    public float JumpForce = 5f;
+    public bool OnGround;
 
     [HideInInspector]
     public Animator PlayerAnim;
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
 
     void Update() {
-        Debug.Log("Bachanam mogaswro");
+        
         if (Input.GetKey(KeyCode.A)) {
             PlayerRb.velocity = new Vector3(-PlayerSpeed, 0f, 0f);
             PlayerAnim.SetTrigger("Run");
@@ -36,6 +38,14 @@ public class PlayerController : MonoBehaviour
             PlayerRb.velocity = new Vector3(PlayerSpeed, 0f, 0f);
             PlayerAnim.SetTrigger("Run");
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, -90, transform.eulerAngles.z);
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (OnGround == true)
+            {
+                PlayerRb.velocity = new Vector2(0f, JumpForce);
+                
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Space)) {
            // PlayerAnim.SetTrigger("Attack");
@@ -49,9 +59,21 @@ public class PlayerController : MonoBehaviour
 
 
     }
+   
 
-    private void OnCollisionEnter(Collision collision) {
+    private void OnCollisionStay(Collision coll) {
+        if(coll.gameObject.tag == "ground")
+        {
+            OnGround = true;
+        }
        
+    }
+    private void OnCollisionExit(Collision collE)
+    {
+        if (collE.gameObject.tag == "ground")
+        {
+            OnGround = false;
+        }
     }
 
     public void ResetPlayerPosition(Transform PlayerStartPos) {
