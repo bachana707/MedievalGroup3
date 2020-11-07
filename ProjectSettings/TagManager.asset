@@ -7,6 +7,7 @@ TagManager:
   - Portal
   - Reset
   - PickableObject
+  - ground
   layers:
   - Default
   - TransparentFX
